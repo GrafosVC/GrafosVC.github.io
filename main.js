@@ -16,4 +16,5 @@ while(true){
 	ajax.open("POST", "https://162.243.157.230:5000/graph", true);
 	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	ajax.send(answer)
+	break
 }
