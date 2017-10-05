@@ -66,4 +66,14 @@ class Graph {
     }
     return 2 * ans == this.m;
   }
+
+  getEdges() {
+    const edges = [];
+    for (var u = 0; u < this.n; u++) {
+      this.forEach(u, (i, u, graph) => {
+        edges.push([u, this.to[i]]);
+      });
+    }
+    return edges;
+  }
 }
