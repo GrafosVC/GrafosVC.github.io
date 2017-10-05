@@ -4,7 +4,7 @@ while(true){
 	graph.addEdge(1, 2);
 	graph.addEdge(2, 3);
 	answer={}
-	opt=new Optimal(graph)
+	opt=new OptimalSolver(graph)
 	answer['none']=opt.solve()
 	answer['edges']=graph.n
 	answer['nodes']=graph.m

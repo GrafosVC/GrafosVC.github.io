@@ -1,4 +1,4 @@
-class Optimal {
+class OptimalSolver {
   constructor(graph) {
     this.graph = graph;
     this.best = graph.n;
