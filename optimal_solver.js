@@ -1,10 +1,10 @@
 class OptimalSolver {
   constructor(graph) {
     this.graph = graph;
-    this.best = graph.n;
   }
 
   solve() {
+    this.best = graph.n;
     this.run(0, 0);
     return this.best;
   }
