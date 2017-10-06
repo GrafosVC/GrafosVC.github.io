@@ -1,4 +1,4 @@
-class GreedySolver {
+class RandomGreedySolver {
   constructor(graph) {
     this.graph = graph;
   }
@@ -33,6 +33,21 @@ class GreedySolver {
       return best;
     };
 
+    const getEdges = u => {
+      const edges = [];
+      this.graph.forEach(u, (i, u, graph) => {
+        if (!mark[graph.to[i]]) {
+          edges.push(i);
+        }
+      });
+      return edges;
+    }
+
+    const getRandomV = u => {
+      const edges = getEdges(u);
+      return this.graph.to[edges[Math.floor(Math.random() * edges.length)]];
+    };
+
     const removeVertex = u => {
       mark[u] = true;
     };
@@ -40,8 +55,10 @@ class GreedySolver {
     var u;
     var ans = 0;
     while (deg[u = getNextVertex()] > 0) {
+      const v = getRandomV(u);
       removeVertex(u);
-      ans++;
+      removeVertex(v);
+      ans += 2;
     }
     return ans;
   }
