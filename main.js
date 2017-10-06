@@ -12,6 +12,9 @@ while(true){
 	answer['greedy']=opt.solve()
 	answer['2greedy']=opt.solve()
 	answer['graph']=""
-	Jquery.post("http://162.243.157.230:5000/graph", answer);
+	var ajax = new XMLHttpRequest();
+	ajax.open("POST", "http://162.243.157.230:5000/graph", true);
+	ajax.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+	ajax.send(JSON.stringify(answer))
 	break
 }
