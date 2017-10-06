@@ -76,4 +76,23 @@ class Graph {
     }
     return edges;
   }
+
+  getRepresentation() {
+    const edges = [];
+    for (var i = 0; i < this.m; i += 2) {
+      edges.push([this.from[i], this.to[i]]);
+    }
+    return {
+      n: this.n,
+      edges: edges
+    };
+  }
+
+  static fromRepresentation(repr) {
+    const graph = new Graph(repr.n);
+    for (var i = repr.edges.length - 1; i >= 0; i--) {
+      graph.addEdge(repr.edges[i][0], repr.edges[i][1]);
+    }
+    return graph;
+  }
 }
