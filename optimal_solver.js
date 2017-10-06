@@ -4,7 +4,7 @@ class OptimalSolver {
   }
 
   solve() {
-    this.best = graph.n;
+    this.best = this.graph.n;
     this.run(0, 0);
     return this.best;
   }
