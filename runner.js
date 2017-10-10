@@ -10,7 +10,6 @@ class Runner {
   run() {
     while (true) {
       this.generateBatch();
-      this.update();
     }
   }
 
@@ -33,6 +32,7 @@ class Runner {
     const graphInfo = this.getNext();
     for (var i = this.repetitions - 1; i >= 0; i--) {
       this.generateGraph(graphInfo.nodes, graphInfo.edges);
+      this.update();
     }
   }
 
