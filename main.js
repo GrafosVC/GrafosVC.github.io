@@ -2,7 +2,7 @@ const SERVER = 'http://162.243.157.230:5000/';
 
 const getBatch = () => {
 	const ajax = new XMLHttpRequest();
-	ajax.open('GET', SERVER + 'graphindex');
+	ajax.open('GET', SERVER + 'graphindex', false);
 	ajax.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 	ajax.send();
 	return JSON.parse(ajax.responseText);
@@ -16,7 +16,7 @@ const sendOne = answer => {
 };
 
 const sendBatch = answers => {
-	answers.forEach(answers, answer => {
+	answers.forEach(answer => {
 		sendOne(answer);
 	});
 };
@@ -41,6 +41,8 @@ const runBatch = (N, M) => {
 
 		answers.push(answer);
 	}
+
+	console.log(N + ', ' + M + ', ' + answers.length);
 
 	return answers;
 };
