@@ -17,13 +17,18 @@ class Runner {
     const graph = Generator.generate(N, M);
     if (graph == null) return;
 
+	const v2aprox = (new RandomSolver(graph)).solve()
+	const vgreedy = (new GreedySolver(graph)).solve()
+	const v2greedy = (new RandomGreedySolver(graph)).solve()
+	const vbest = Math.min(graph.n, v2aprox, vgreedy, v2greedy)
+
     this.answer.push({
       'nodes':   graph.n,
       'edges':   graph.m / 2,
-      'none':    (new OptimalSolver(graph)).solve(),
-      '2aprox':  (new RandomSolver(graph)).solve(),
-      'greedy':  (new GreedySolver(graph)).solve(),
-      '2greedy': (new RandomGreedySolver(graph)).solve(),
+      'none':    (new OptimalSolver(graph, vbest)).solve(),
+      '2aprox':  v2aprox,
+      'greedy':  vgreedy,
+      '2greedy': v2greedy,
       'graph':   graph.getRepresentation()
     });
   }
