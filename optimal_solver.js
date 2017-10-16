@@ -1,7 +1,7 @@
 class OptimalSolver {
   constructor(graph, bst) {
     this.graph = graph;
-	this.best = best;
+	this.best = bst;
   }
 
   solve() {
