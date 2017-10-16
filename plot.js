@@ -1,1 +1,7 @@
-window.onload = () => (new Plotter).run();
+const plotter = new Plotter();
+
+function plotGraph() {
+  plotter.runGraph();
+}
+
+window.onload = () => plotter.runAll();
