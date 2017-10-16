@@ -5,10 +5,38 @@ class Plotter {
 
   run() {
     const graphData = this.getGraphData();
-    this.plot(graphData.graphs);
+    this.plotCurve(graphData.graphs);
+    this.plotGraph(graphData.graphs['5']['10'].graph['greedy']);
   }
 
-  plot(graphs) {
+  plotGraph(graph) {
+    console.log(graph);
+    const nodes = new vis.DataSet();
+    const edges = new vis.DataSet();
+
+    for (var i = Number(graph.n) - 1; i >= 0; i--) {
+      console.log("Node: " + i);
+      nodes.add({
+        id: i,
+        label: String(i)
+      });
+    }
+
+    for (var i = graph.edges.length - 1; i >= 0; i--) {
+      edges.add({from: graph.edges[i][0], to: graph.edges[i][1]});
+    }
+
+    const options = {};
+    const data = {
+      nodes: nodes,
+      edges: edges
+    };
+
+    const container = document.getElementById('graph');
+    const graph3d = new vis.Network(container, data, options);
+  }
+
+  plotCurve(graphs) {
     this.plotSurface(graphs)
   }
 
