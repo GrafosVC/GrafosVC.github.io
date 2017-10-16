@@ -55,9 +55,9 @@ class Runner {
   }
 
   getNext() {
-  	ans={}
+  	const ans={}
   	ans.nodes=200;
-  	edges=[400,600,8000,10000];
+  	const edges=[400,600,8000,10000];
   	ans.edges=edges[Math.floor(Math.random() * edges.length)];
     return ans;
   }
