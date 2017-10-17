@@ -102,15 +102,10 @@ class Plotter {
 
     var id = 0;
     for (const N in graphs) {
-      if (N * 1 > 24) continue;
-      // const MAX_M = (N * (N - 1)) / 2;
       const M_list = []
-      // M_list.push([0, 1]);
       for (const M in graphs[N]) {
         M_list.push([M * 1, graphs[N][M]['cntgreedy'] / graphs[N][M]['cntnone']]);
       }
-      // M_list.push([MAX_M, 1]);
-      // M_list.push([MAX_MAX_M, 1]);
 
       const getMiddle = (a, b, c, d) => {
         return (a * d + b * c) / (c + d);
