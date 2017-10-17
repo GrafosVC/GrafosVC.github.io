@@ -103,8 +103,10 @@ class Plotter {
     var id = 0;
     for (const N in graphs) {
       const M_list = []
+      var MAX_M = 0;
       for (const M in graphs[N]) {
         M_list.push([M * 1, graphs[N][M]['cntgreedy'] / graphs[N][M]['cntnone']]);
+        MAX_M = Math.max(MAX_M, M * 1);
       }
 
       const getMiddle = (a, b, c, d) => {
@@ -112,7 +114,6 @@ class Plotter {
       };
 
       var i = 0;
-      const MAX_M = (N * (N - 1)) / 4;
       for (var M = N - 1; M <= MAX_M; M++) {
         while (M_list[i][0] < M) i++;
         const value = M_list[i][0] == M ? M_list[i][1] : getMiddle(
