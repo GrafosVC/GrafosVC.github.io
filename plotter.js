@@ -24,12 +24,12 @@ class Plotter {
     const nodes = document.getElementById('graph-nodes').value;
     const edges_option = document.querySelector('input[name="graph-edges"]:checked').value;
     const edges = this.edgeFunction[Number(edges_option)](nodes);
-    const data = this.graphData.graphs[nodes][edges];
-    if (!data) {
+    if (this.graphData.graphs[nodes] && this.graphData.graphs[nodes][edges]) {
+      const data = this.graphData.graphs[nodes][edges];
+      this.plotGraph(data.graph['greedy']);
+    } else {
       const container = document.getElementById('graph');
       container.innerText = 'There is no data for these values.';
-    } else {
-      this.plotGraph(data.graph['greedy']);
     }
   }
 
@@ -100,30 +100,25 @@ class Plotter {
   plotSurface(graphs) {
     const data = new vis.DataSet();
 
-    var MAX_MAX_M = 0;
-    for (const N in graphs) {
-      const MAX_M = (N * (N - 1)) / 2;
-      MAX_MAX_M = Math.max(MAX_MAX_M, MAX_M);
-    }
-
     var id = 0;
     for (const N in graphs) {
-      const MAX_M = (N * (N - 1)) / 2;
+      if (N * 1 > 24) continue;
+      // const MAX_M = (N * (N - 1)) / 2;
       const M_list = []
-      M_list.push([0, 1]);
-      M_list.push([N - 1, 1]);
+      // M_list.push([0, 1]);
       for (const M in graphs[N]) {
         M_list.push([M * 1, graphs[N][M]['cntgreedy'] / graphs[N][M]['cntnone']]);
       }
-      M_list.push([MAX_M, 1]);
-      M_list.push([MAX_MAX_M, 1]);
+      // M_list.push([MAX_M, 1]);
+      // M_list.push([MAX_MAX_M, 1]);
 
       const getMiddle = (a, b, c, d) => {
         return (a * d + b * c) / (c + d);
       };
 
       var i = 0;
-      for (var M = 0; M <= MAX_MAX_M; M++) {
+      const MAX_M = (N * (N - 1)) / 4;
+      for (var M = N - 1; M <= MAX_M; M++) {
         while (M_list[i][0] < M) i++;
         const value = M_list[i][0] == M ? M_list[i][1] : getMiddle(
             M_list[i - 1][1],
